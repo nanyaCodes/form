@@ -255,46 +255,8 @@
     </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the booking form
+    document.addEventListener('DOMContentLoaded', function() { 
         const bookingForm = document.querySelector('.booking-form-compact form');
-        
-        // Set minimum dates for check-in and check-out
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        
-        // Format dates for input fields (YYYY-MM-DD)
-        const formatDate = (date) => {
-            const year = date.getFullYear();
-            const month = String(date.getMonth() + 1).padStart(2, '0');
-            const day = String(date.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
-        };
-        
-        // Set min attribute for date inputs
-        const checkInInput = document.getElementById('check-in');
-        const checkOutInput = document.getElementById('check-out');
-        
-        checkInInput.min = formatDate(today);
-        checkOutInput.min = formatDate(tomorrow);
-        
-        // Set default values (optional)
-        checkInInput.value = formatDate(today);
-        checkOutInput.value = formatDate(tomorrow);
-        
-        // Update check-out min date when check-in changes
-        checkInInput.addEventListener('change', function() {
-            const newMinCheckOut = new Date(this.value);
-            newMinCheckOut.setDate(newMinCheckOut.getDate() + 1);
-            checkOutInput.min = formatDate(newMinCheckOut);
-            
-            // If current check-out date is before new min date, update it
-            if (new Date(checkOutInput.value) <= new Date(this.value)) {
-                checkOutInput.value = formatDate(newMinCheckOut);
-            }
-        });
-        
         // Room prices (for calculation)
         const roomPrices = {
             'deluxe': 199,
